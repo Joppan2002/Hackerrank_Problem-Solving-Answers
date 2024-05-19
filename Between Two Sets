@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+
+class Result {
+
+    public static int getTotalX(List<Integer> a, List<Integer> b) {
+        int count = 0;
+        int min = Collections.max(a);
+        int max = Collections.max(b);
+
+        for (int i = min; i <= max; i += min) {
+            if (firstIsFactorOfSecond(a, i) && secondIsFactorOfFirst(b, i)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private static boolean firstIsFactorOfSecond(List<Integer> a, int num) {
+        for (int n : a) {
+            if (num % n != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean secondIsFactorOfFirst(List<Integer> a, int num) {
+        for (int n : a) {
+            if (n % num != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int n = Integer.parseInt(firstMultipleInput[0]);
+        int m = Integer.parseInt(firstMultipleInput[1]);
+
+        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+
+        List<Integer> brr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+
+        int total = Result.getTotalX(arr, brr);
+
+        bufferedWriter.write(String.valueOf(total));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
