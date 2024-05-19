@@ -1,0 +1,35 @@
+import java.util.*;
+public class Solution
+{
+    public static void main(String args[])
+    {
+        Scanner in=new Scanner(System.in);
+        int a[]=new int[3];
+        int b[]=new int[3];
+        int n[]=new int[2];
+        int i;
+        for(i=0;i<3;i++)
+        {
+            a[i]=in.nextInt();
+        }
+        for(i=0;i<3;i++)
+        {
+            b[i]=in.nextInt();
+        }
+        for(i=0;i<3;i++)
+        {
+            if(a[i]>b[i])
+            {
+                n[0]++;
+            }
+            else if(a[i]<b[i])
+            {
+                n[1]++;
+            }
+        }
+        for(i=0;i<2;i++)
+        {
+            System.out.print(n[i]+" ");
+        }
+    }
+}
