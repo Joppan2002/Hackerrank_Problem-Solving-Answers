@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Solutions
+{
+    public static void main(String arg[])
+    {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();
+        String[] arr = str.split(":");
+        int h = Integer.parseInt(arr[0]);
+        String m = arr[1];
+        String s = arr[2].substring(0, 2);
+        String ap = arr[2].substring(2);
+
+        if (ap.equals("PM") || ap.equals("pm"))
+        {
+            if (h != 12) {
+                h += 12;
+            }
+        } 
+        else if (ap.equals("AM") || ap.equals("am"))
+        {
+            if (h == 12) {
+                h = 0;
+            }
+        }
+        System.out.printf("%02d:%s:%s\n", h, m, s);
+        in.close();
+    }
+}
